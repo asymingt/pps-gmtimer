@@ -1,0 +1,11 @@
+--- a/arch/arm/plat-omap/dmtimer.c	2015-03-06 14:53:42.000000000 -0800
++++ b/arch/arm/plat-omap/dmtimer.c	2015-03-09 12:32:37.521876452 -0700
+@@ -514,7 +514,7 @@ int omap_dm_timer_set_source(struct omap
+ 		break;
+ 
+ 	case OMAP_TIMER_SRC_EXT_CLK:
+-		parent_name = "timer_ext_ck";
++		parent_name = "tclkin_ck";
+ 		break;
+ 	}
+ 

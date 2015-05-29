@@ -1,0 +1,37 @@
+--- a/arch/arm/mach-omap2/cclock3xxx_data.c	2015-03-06 14:53:42.000000000 -0800
++++ b/arch/arm/mach-omap2/cclock3xxx_data.c	2015-03-23 11:23:32.620852911 -0700
+@@ -59,7 +59,7 @@ DEFINE_CLK_FIXED_RATE(rmii_ck, CLK_IS_RO
+ 
+ DEFINE_CLK_FIXED_RATE(secure_32k_fck, CLK_IS_ROOT, 32768, 0x0);
+ 
+-DEFINE_CLK_FIXED_RATE(sys_altclk, CLK_IS_ROOT, 0x0, 0x0);
++DEFINE_CLK_FIXED_RATE(sys_altclk, CLK_IS_ROOT, 10000000, 0x0);
+ 
+ DEFINE_CLK_FIXED_RATE(virt_12m_ck, CLK_IS_ROOT, 12000000, 0x0);
+ 
+@@ -86,6 +86,8 @@ DEFINE_CLK_DIVIDER(sys_ck, "osc_sys_ck",
+ 		   OMAP3430_PRM_CLKSRC_CTRL, OMAP_SYSCLKDIV_SHIFT,
+ 		   OMAP_SYSCLKDIV_WIDTH, CLK_DIVIDER_ONE_BASED, NULL);
+ 
++DEFINE_CLK_FIXED_RATE(tclkin_ck, CLK_IS_ROOT, 16000000, 0x0);
++
+ static struct dpll_data dpll3_dd = {
+ 	.mult_div1_reg	= OMAP_CM_REGADDR(PLL_MOD, CM_CLKSEL1),
+ 	.mult_mask	= OMAP3430_CORE_DPLL_MULT_MASK,
+@@ -1555,7 +1557,7 @@ static const struct clksel omap343x_gpt_
+ };
+ 
+ static const char *gpt10_fck_parent_names[] = {
+-	"omap_32k_fck", "sys_ck",
++	"tclkin_ck", "omap_32k_fck", "sys_ck",
+ };
+ 
+ DEFINE_CLK_OMAP_MUX_GATE(gpt10_fck, "core_l4_clkdm", omap343x_gpt_clksel,
+@@ -3397,6 +3399,7 @@ static struct omap_clk omap3xxx_clks[] =
+ 	CLK(NULL,	"virt_26000000_ck", &virt_26000000_ck),
+ 	CLK(NULL,	"virt_38_4m_ck", &virt_38_4m_ck),
+ 	CLK(NULL,	"osc_sys_ck",	&osc_sys_ck),
++	CLK(NULL,	"tclkin_ck",	&tclkin_ck),
+ 	CLK("twl",	"fck",		&osc_sys_ck),
+ 	CLK(NULL,	"sys_ck",	&sys_ck),
+ 	CLK(NULL,	"omap_96m_alwon_fck", &omap_96m_alwon_fck),

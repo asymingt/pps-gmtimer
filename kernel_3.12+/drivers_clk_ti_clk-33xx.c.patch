@@ -1,0 +1,12 @@
+--- a/drivers/clk/ti/clk-33xx.c	2015-03-06 14:53:42.000000000 -0800
++++ b/drivers/clk/ti/clk-33xx.c	2015-03-22 21:08:08.910174309 -0700
+@@ -116,7 +116,8 @@ static const char *enable_init_clks[] =
+ 	"l4fw_gclk",
+ 	"l4ls_gclk",
+ 	/* Required for external peripherals like, Audio codecs */
+-	"clkout2_ck",
++	/*"clkout2_ck",*/
++	"tclkin_ck",
+ };
+ 
+ int __init am33xx_dt_clk_init(void)
